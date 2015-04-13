@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+SERVICE='deploy'
+PID=$(ps ax | grep -v grep | grep deploy | awk '{print $1}')
+
+case "$1" in
+    start)
+        echo -e "Starting ScalingCloud: "
+	/usr/bin/scaling_cloud -s
+        ;;
+    stop)
+        if ps ax | grep -v grep | grep $SERVICE > /dev/null
+	then
+    	echo -e "Stopping ScalingCloud ..."
+    	kill $PID
+	else
+    	echo -e "ScalingCloud is not running, no need to stop it"
+	fi
+        ;;
+    status)
+	if ps ax | grep -v grep | grep $SERVICE > /dev/null
+	then
+		echo -e "ScalingCloud is running"
+	else
+		echo -e "ScalingCloud is not running"
+	fi
+	;;
+    reload|restart)
+        $0 stop
+        $0 start
+        ;;
+    *)
+        echo -e "Usage: $0 start|stop|restart|reload"
+        exit 1
+esac
+exit 0

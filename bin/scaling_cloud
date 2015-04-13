@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/stian/backup/backupproject1project2/project2/scripts/
+./deploy.py $1 & >> /dev/null
+

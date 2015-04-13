@@ -1,0 +1,18 @@
+[Hammer]
+hammerpassword = *********
+hammerusername = USERNAME
+[Nova]
+url = NOVAURL
+novausername = USERNAME
+novapassword = **************
+flavor = <id>
+imageid = <imageid>
+nicid=<nidid>
+keyname=<keypairname>
+tenant=<tenantname>
+emailaddress=email@example.com
+emailpassword=*************
+mailserver=smtp.example.com:PORT
+mailusername=USERNAME
+
+
