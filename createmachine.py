@@ -79,6 +79,13 @@ class MachineTasks :
         return output
     def runcommand(self, command):
         subprocess.call(command, shell=True)
+    def readUserData(self, name):
+        file=open(name,'r')
+        content= file.readlines()
+        fulltext=""
+        for line in content :
+                fulltext+=line
+        return fulltext
     def getPerformancePercent(self) :
             number = 0.00
             numberlist = []
@@ -96,7 +103,8 @@ class MachineTasks :
         numberfile.close()
     # This function MUST use the nova command line tool, to deploy machines with custom user data, cannot be changed, in order to deploy machines with commands successfully
     def createMachine(self, name) : 
-        self.runcommand("nova boot --flavor "+ str(self.flavor)+" --image "+self.image+" --nic net-id="+self.nic+" --user-data=test.sh  --key-name "+ self.key +" " + name)
+        self.nova.servers.create(name=name, image=self.image,flavor=self.flavor, nics=[{"net-id":self.nic,"v4-fixed-ip": ''}],key_name=self.key, userdata=self.readUserData("bin/test.txt"))
+        #self.runcommand("nova boot --flavor "+ str(self.flavor)+" --image "+self.image+" --nic net-id="+self.nic+" --user-data=test.sh  --key-name "+ self.key +" " + name)
         logging.info("Machine is added, sleeping while waiting for the machine to configure itself")
         time.sleep(150)
         self.addIPtoList(name)
@@ -228,6 +236,8 @@ class MachineTasks :
     def deleteGraphsAndData(self):
         print "Flushing data in the reports directory"
         self.runcommand("rm reports/*")
+        
+    
     def sendGraphsPerEmail(self):
         msg = MIMEMultipart()
         msg['To'] = self.emailaddress

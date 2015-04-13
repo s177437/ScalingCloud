@@ -1,0 +1,6 @@
+#!/bin/bash
+wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
+dpkg -i puppetlabs-release-precise.deb
+apt-get update
+apt-get -y install puppet augeas-tools
+curl  ftp://10.0.26.5/puppet_agent | puppet apply
