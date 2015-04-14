@@ -1,0 +1,1 @@
+Welcome to the ScalingCloud project. This is a project made especially for the HIOA course Service Management(MS019A)
