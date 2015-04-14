@@ -55,6 +55,17 @@ Please make sure that the following python-libraries are preset
 * python-argparser
 * python-configparser
 
+Installation
+==================
+
+Make sure that the technical requirements are fulfilled. 
+Download the HEAD from the master branch and do the following.
+
+* Copy config.ini.example to config.ini and insert valid Hammer, Nova and email credentials
+
+If you want the program to be executable from /bin/ execute the following command 
+
+    ln -s {/path/to/ScalingCloud} {/usr/bin/NAME}
 
 
 
