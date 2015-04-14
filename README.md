@@ -35,5 +35,26 @@ inside the configuration file config.ini
 Configuration
 -----------
 
-The project has several dependencies that must be installed in order to get the project to work. 
+The project has several dependencies that must be installed in order to get the project to work. The requirements are listed below 
+
+Puppet
+* A haproxy.cfg file on a Puppet master that the application can write changes to. 
+* Foreman to manage the webservers- A hostgroup can govern the Puppet manifests
+* foreman-default-hostgroup plugin to add the newly deployed servers to a default hostgroup with the correct manifests
+
+OpenStack 
+* The project must be deployed against an OpenStack environment. 
+* Novaclient must be installed to make it possible to execute nova commands from the command line. 
+* Valid OpenStack credentials must be provided to make the application execute the commands. 
+
+Python 
+Please make sure that the following python-libraries are preset
+* python-novaclient
+* python-matplotlib
+* python-logging
+* python-argparser
+* python-configparser
+
+
+
 
